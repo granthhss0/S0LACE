@@ -61,19 +61,12 @@ if (
         console.warn("registerSW is not defined");
       }
 
-      // 2. Prepare URL
       const url = search(address.value, searchEngine.value);
-      let wispUrl =
-        (location.protocol === "https:" ? "wss" : "ws") +
-        "://" +
-        location.host +
-        "/wisp/";
 
-      // 3. Setup BareMux Transport (This is where your error was happening)
-      const current = await connection.getTransport();
-      if (current !== "/epoxy/index.mjs") {
-        await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
-      }
+const current = await connection.getTransport();
+if (current !== "/epoxy/index.mjs") {
+  await connection.setTransport("/epoxy/index.mjs", [{ wisp: "wss://bare-server.fly.dev/wisp/" }]);
+}
 
       // 4. Create and inject the frame
       const frame = scramjet.createFrame();
