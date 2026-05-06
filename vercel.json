@@ -1,5 +1,5 @@
 {
   "outputDirectory": "public",
-  "buildCommand": "node build.js",
+  "buildCommand": "npm install && node build.js",
   "framework": null
 }
